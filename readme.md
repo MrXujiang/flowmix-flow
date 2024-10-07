@@ -1,6 +1,6 @@
 ## flowmix/flow
 
-![](./public/cp2.gif)
+![](https://cdn.dooring.cn/cp2.gif)
 
 An open-source visual process engine that is ready to use out of the box. We can use it to implement visual workflows similar to Dify, etc.
 
@@ -11,6 +11,17 @@ English | [简体中文](./zh.md)
 demo: [flowmix-flow](http://flowmix.turntip.cn/flow-v0)
 
 tech blog: [sharing of technology](http://flowmix.turntip.cn/flow/static/logo.ce1bcd6a.jpeg)
+
+## Feature
+
+- Process sequencing
+- Node dragging
+- Automatic creation/editing of nodes
+- Node connection
+- Dragging guide lines/snapping
+- Canvas mode
+- Canvas thumbnail
+- Export process JSON
 
 ## Use
 
