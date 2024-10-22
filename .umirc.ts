@@ -5,11 +5,12 @@ const isDev = process.env.NODE_ENV === 'development';
 
 export default defineConfig({
   devtool: process.env.NODE_ENV === 'development' ? 'source-map' : false,
-  base: isDeskTopEnv ? '/' : '/flow-v0/',
-  publicPath: isDeskTopEnv ? '/' : '/flow-v0/',
-  outputPath: 'flow-v0',
+  base: isDeskTopEnv ? '/' : '/flow-v1/',
+  publicPath: isDeskTopEnv ? '/' : '/flow-v1/',
+  outputPath: 'flow-v1',
   routes: [
     { path: "/", component: "flow/editor" },
+    { path: "/demo", component: "flow/editor/demo" },
   ],
   define: {
     UPLOAD_PATH: '/upload',

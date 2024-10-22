@@ -1,11 +1,17 @@
 import {
   Handle, NodeResizer, useUpdateNodeInternals,
-  useReactFlow
+  useReactFlow, Position
 } from '@xyflow/react';
 import { PlusCircleFilled } from '@ant-design/icons';
 import  IBaseSchema from './NodeType';
 import { useEffect, useRef } from 'react';
-import { Tooltip, Tag } from 'antd';
+import { Tooltip } from 'antd';
+
+const DEFAULT_HANDLE_STYLE = {
+  width: 5,
+  height: 5,
+  bottom: 0,
+};
 
 
 function withBaseNode(Component: any) {
@@ -21,9 +27,9 @@ function withBaseNode(Component: any) {
 
     const handleAddNode = () => {
       // @ts-ignore
-      const x = props.positionAbsoluteX + props.width + 100;
+      const x = props.positionAbsoluteX;
       // @ts-ignore
-      const y = props.positionAbsoluteY;
+      const y = props.positionAbsoluteY + props.height + 100;
       const newNode = {
         ...props,
         id: `n_${new Date().getTime()}`,
@@ -50,8 +56,8 @@ function withBaseNode(Component: any) {
         source: props.id,
         target: newNode.id,
         type: "fm-edge",
-        sourceHandle: `source-right-${props.id}`,
-        targetHandle: `target-left-${newNode.id}`,
+        sourceHandle: `source-bottom-${props.id}`,
+        targetHandle: `target-top-${newNode.id}`,
       }
       // @ts-ignore
       reactFlow.addEdges(edge);
@@ -106,16 +112,23 @@ function withBaseNode(Component: any) {
                         />
                 })
           }
+          <Handle
+            type="source"
+            id={`handle-ct-${id}`}
+            position={Position.Bottom}
+            style={{ ...DEFAULT_HANDLE_STYLE, left: '35%' }}
+            isConnectable={isConnectable}
+          />
           {
             selected && <span
               style={{
                 position: 'absolute',
-                top: '50%',
+                left: '50%',
                 backgroundColor: '#fff',
                 borderRadius: 18,
                 display: 'flex',
-                right: 0,
-                transform: 'translate(120%, -50%)',
+                bottom: 0,
+                transform: 'translate(-50%, 120%)',
                 fontSize: 18,
                 color: '#1677ff',
                 cursor: 'pointer'
@@ -124,7 +137,6 @@ function withBaseNode(Component: any) {
               <PlusCircleFilled />
             </span>
           }
-          <Tag>{ data.order || 0 }</Tag>
           <Component id={id} {...data} />
         </div>
       </Tooltip>

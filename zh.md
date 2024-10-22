@@ -8,7 +8,10 @@
 
 [English](./readme.md) | 简体中文
 
-演示地址: [flowmix-flow](http://flowmix.turntip.cn/flow-v0)
+演示地址: 
+
+- [flowmix-flow | 工作流案例](http://flowmix.turntip.cn/flow-v0)
+- [flowmix-mind | 思维导图案例](http://flowmix.turntip.cn/flow-v1)
 
 学习资料: [立即查看](http://flowmix.turntip.cn/flow/static/logo.ce1bcd6a.jpeg)
 

@@ -8,7 +8,11 @@ An open-source visual process engine that is ready to use out of the box. We can
 
 English | [简体中文](./zh.md)
 
-demo: [flowmix-flow](http://flowmix.turntip.cn/flow-v0)
+demo: 
+
+- [flowmix-flow](http://flowmix.turntip.cn/flow-v0)
+- [flowmix-mind](http://flowmix.turntip.cn/flow-v1)
+
 
 tech blog: [sharing of technology](http://flowmix.turntip.cn/flow/static/logo.ce1bcd6a.jpeg)
 

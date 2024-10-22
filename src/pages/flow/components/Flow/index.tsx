@@ -8,7 +8,8 @@ import {
   BackgroundVariant,
   Panel,
   Edge,
-  Node
+  Node,
+  ConnectionMode
 } from '@xyflow/react';
 import type { MenuProps } from 'antd';
 import { Dropdown } from 'antd';
@@ -16,6 +17,7 @@ import PanelControl from './PanelControl';
 import nodeTypes from './components/Nodes';
 import edgeTypes from './components/Edges';
 import nodeColor from './lib/miniColorMap';
+// import ConnectionLine from './components/Connection';
 import { AppState } from '../../type';
 import '@xyflow/react/dist/style.css';
 
@@ -149,6 +151,7 @@ function Flow(props: IFlowProps) {
                 onConnect={onConnect}
                 minZoom={0.1}
                 maxZoom={100}
+                connectionMode={ConnectionMode.Loose}
                 // @ts-ignore
                 nodeTypes={nodeTypes}
                 edgeTypes={edgeTypes}
@@ -161,6 +164,8 @@ function Flow(props: IFlowProps) {
                 onNodeDragStop={handleNodeDragEnd}
                 panOnScroll
                 colorMode={theme}
+                // 自定义连接线连接时不显示连接线, 待解决
+                // connectionLineComponent={ConnectionLine}
                 selectionOnDrag
                 panOnDrag={panMode === 'select' ? panOnDrag : undefined}
                 onNodeContextMenu={(event: React.MouseEvent, node: Node) => {

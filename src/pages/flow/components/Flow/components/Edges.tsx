@@ -1,12 +1,9 @@
 import {
     BaseEdge,
     EdgeLabelRenderer,
-    getStraightPath,
     getSimpleBezierPath,
-    getSmoothStepPath,
-    getBezierPath,
     useReactFlow,
-    Edge
+    Edge,
   } from '@xyflow/react';
 
 import { PlusCircleFilled } from '@ant-design/icons';
@@ -14,17 +11,14 @@ import { PlusCircleFilled } from '@ant-design/icons';
   import { Tag } from 'antd';
 
   const edgeStyle = {
-    getStraightPath,
     getSimpleBezierPath,
-    getSmoothStepPath,
-    getBezierPath,
   }
   
- function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data, selected }: any) {
+ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, data, selected, markerEnd }: any) {
     const { style } = data || {};
     const { setNodes, setEdges, getNode, getNodes, getEdges, getEdge } = useReactFlow();
     // @ts-ignore
-    const [edgePath, labelX, labelY] = edgeStyle[style?.style || 'getBezierPath']({
+    const [edgePath, labelX, labelY] = edgeStyle[style?.style || 'getSimpleBezierPath']({
       sourceX,
       sourceY,
       targetX,
@@ -48,8 +42,8 @@ import { PlusCircleFilled } from '@ant-design/icons';
         target: new_id,
         type: "fm-edge",
         selected: false,
-        sourceHandle: `source-right-${edge.source}`,
-        targetHandle: `target-left-${new_id}`,
+        sourceHandle: `source-bottom-${edge.source}`,
+        targetHandle: `target-top-${new_id}`,
       }
 
       const newNodes = [...getNodes(), newNode];
@@ -66,8 +60,8 @@ import { PlusCircleFilled } from '@ant-design/icons';
                                   order: n.id !== new_id && n.data.order >= newNode.data.order ? n.data.order + 1 : n.data.order,
                                 },
                                 position: {
-                                  x: n.id !== new_id && n.position.x >= newNode.position.x ? n.position.x + newNode.width + 100 : n.position.x,
-                                  y: n.position.y,
+                                  y: n.id !== new_id && n.position.y >= newNode.position.y ? n.position.y + newNode.height + 100 : n.position.y,
+                                  x: n.position.x,
                                 }}
                                 }
                               );
@@ -81,8 +75,8 @@ import { PlusCircleFilled } from '@ant-design/icons';
             source: new_id,
             target: edge.target,
             selected: false,
-            sourceHandle: `source-right-${new_id}`,
-            targetHandle: `target-left-${edge.target}`,
+            sourceHandle: `source-bottom-${new_id}`,
+            targetHandle: `target-top-${edge.target}`,
             }
           }
           return e
@@ -95,9 +89,10 @@ import { PlusCircleFilled } from '@ant-design/icons';
         <BaseEdge 
           id={id} 
           path={edgePath}
+          markerEnd={markerEnd}
           style={{
             stroke: style ? style.color : '',
-            strokeWidth: style ? style.width : 1,
+            strokeWidth: 3,
           }} 
         />
           <EdgeLabelRenderer>
